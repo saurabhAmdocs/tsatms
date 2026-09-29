@@ -1,0 +1,1 @@
+package com.amdocs.telecom.security; import com.amdocs.telecom.model.Types.Role; public class AuthContext{public final String username,refId;public final Role role;public AuthContext(String u,Role r,String id){username=u;role=r;refId=id;}}

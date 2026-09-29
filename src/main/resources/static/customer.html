@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Customer</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div><h1>Customer</h1><p class="who">Signed in as <span id="who"></span></p></div>
+      <button class="secondary" onclick="logout()">Logout</button>
+    </div>
+  </header>
+  <main>
+    <section class="card"><h2>My services</h2><div id="services"></div></section>
+    <section class="card">
+      <h2>Raise trouble ticket</h2>
+      <select id="svc"></select>
+      <select id="category">
+        <option>NETWORK_OUTAGE</option><option>CALL_DROP</option><option>SLOW_DATA</option><option>NO_CONNECTIVITY</option>
+        <option>SIM_ISSUE</option><option>BILLING</option><option>BROADBAND</option><option>ROAMING</option><option>ENTERPRISE_LINK</option><option>OTHER</option>
+      </select>
+      <select id="priority"><option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option></select>
+      <textarea id="desc" placeholder="Describe the issue"></textarea>
+      <button onclick="createCustomerTicket()">Create ticket</button>
+      <p id="createMsg"></p>
+    </section>
+    <section class="card"><h2>My tickets</h2><div id="tickets"></div><div id="history"></div></section>
+    <div class="grid">
+      <section class="card">
+        <h2>Notifications</h2>
+        <div id="notes"></div>
+      </section>
+      <section class="card">
+        <h2>Feedback</h2>
+        <input id="ticketId" placeholder="Ticket ID">
+        <select id="rating"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+        <textarea id="comments" placeholder="Comments"></textarea>
+        <button onclick="sendFeedback()">Submit feedback</button>
+        <p id="feedbackMsg"></p>
+      </section>
+    </div>
+  </main>
+  <script src="/common.js"></script>
+  <script src="/pages.js"></script>
+</body>
+</html>

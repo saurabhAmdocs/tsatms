@@ -1,0 +1,7 @@
+/target/
+/data/
+/exports/*.csv
+/dependency-reduced-pom.xml
+.idea/
+*.iml
+.env

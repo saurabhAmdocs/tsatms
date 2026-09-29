@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Network Engineer</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div><h1>Network Engineer</h1><p class="who">Signed in as <span id="who"></span></p></div>
+      <button class="secondary" onclick="logout()">Logout</button>
+    </div>
+  </header>
+  <main>
+    <section class="card"><h2>Assigned tickets</h2><div id="tickets"></div><div id="history"></div></section>
+    <div class="grid">
+      <section class="card">
+        <h2>Update status</h2>
+        <input id="statusId" placeholder="Ticket ID">
+        <select id="status"><option>IN_PROGRESS</option><option>PENDING_CUSTOMER</option><option>ESCALATED</option></select>
+        <input id="remarks" placeholder="Remarks">
+        <button onclick="engineerStatus()">Update status</button>
+        <p id="statusMsg"></p>
+      </section>
+      <section class="card">
+        <h2>Escalate</h2>
+        <input id="escId" placeholder="Ticket ID">
+        <div class="row">
+          <select id="fromLevel"><option>Engineer</option><option>Team Lead</option></select>
+          <select id="toLevel"><option>Team Lead</option><option>Network Manager</option><option>Operations Manager</option></select>
+        </div>
+        <input id="reason" placeholder="Reason">
+        <button onclick="escalateTicket()">Escalate</button>
+        <p id="actionMsg"></p>
+      </section>
+    </div>
+    <section class="card">
+      <h2>Resolve ticket</h2>
+      <input id="resolveId" placeholder="Ticket ID">
+      <input id="root" placeholder="Root cause">
+      <select id="code">
+        <option>HARDWARE_FAILURE</option><option>CONFIGURATION_ERROR</option><option>NETWORK_CONGESTION</option>
+        <option>SOFTWARE_FAILURE</option><option>FIBER_CUT</option><option>POWER_FAILURE</option><option>CUSTOMER_DEVICE</option><option>UNKNOWN</option>
+      </select>
+      <textarea id="resolution" placeholder="Resolution"></textarea>
+      <button onclick="resolveTicket()">Resolve</button>
+      <p id="resolveMsg"></p>
+    </section>
+    <section class="card"><h2>Notifications</h2><div id="notes"></div></section>
+  </main>
+  <script src="/common.js"></script>
+  <script src="/pages.js"></script>
+</body>
+</html>

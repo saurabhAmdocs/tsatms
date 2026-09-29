@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Network Manager</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div><h1>Network Manager</h1><p class="who">Signed in as <span id="who"></span></p></div>
+      <button class="secondary" onclick="logout()">Logout</button>
+    </div>
+  </header>
+  <main>
+    <section class="card"><h2>Operations dashboard</h2><div id="summary" class="metrics"></div></section>
+    <section class="card"><h2>All tickets</h2><div id="tickets"></div><div id="history"></div></section>
+    <div class="grid">
+      <section class="card">
+        <h2>Assign engineer</h2>
+        <input id="assignTicket" placeholder="Ticket ID">
+        <input id="engineerId" value="ENG1008" placeholder="Engineer ID">
+        <button onclick="assignEngineer()">Assign</button>
+        <p id="assignMsg"></p>
+      </section>
+      <section class="card">
+        <h2>Priority and escalation</h2>
+        <input id="updateId" placeholder="Ticket ID">
+        <select id="newPriority"><option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option></select>
+        <button onclick="updatePriority()">Update priority</button>
+        <input id="escId" placeholder="Ticket ID">
+        <div class="row">
+          <select id="fromLevel"><option>Network Manager</option><option>Team Lead</option><option>Engineer</option></select>
+          <select id="toLevel"><option>Operations Manager</option><option>Network Manager</option><option>Team Lead</option></select>
+        </div>
+        <input id="reason" placeholder="Reason">
+        <button class="secondary" onclick="escalateTicket()">Escalate</button>
+        <p id="updateMsg"></p>
+        <p id="actionMsg"></p>
+      </section>
+    </div>
+    <div class="grid">
+      <section class="card">
+        <h2>Resolve ticket</h2>
+        <input id="resolveId" placeholder="Ticket ID">
+        <input id="root" placeholder="Root cause">
+        <select id="code">
+          <option>HARDWARE_FAILURE</option><option>CONFIGURATION_ERROR</option><option>NETWORK_CONGESTION</option>
+          <option>SOFTWARE_FAILURE</option><option>FIBER_CUT</option><option>POWER_FAILURE</option><option>CUSTOMER_DEVICE</option><option>UNKNOWN</option>
+        </select>
+        <textarea id="resolution" placeholder="Resolution"></textarea>
+        <button onclick="resolveTicket()">Resolve</button>
+        <p id="resolveMsg"></p>
+      </section>
+      <section class="card">
+        <h2>Reports</h2>
+        <select id="report">
+          <option value="ticket-volume">Ticket volume</option>
+          <option value="sla-compliance">SLA compliance</option>
+          <option value="engineer-performance">Engineer performance</option>
+          <option value="incident-category">Incident category</option>
+          <option value="regional-incident">Regional incident</option>
+          <option value="average-resolution">Average resolution</option>
+          <option value="critical-incident">Critical incident</option>
+        </select>
+        <button onclick="downloadReport(report.value)">Download report</button>
+      </section>
+    </div>
+  </main>
+  <script src="/common.js"></script>
+  <script src="/pages.js"></script>
+</body>
+</html>

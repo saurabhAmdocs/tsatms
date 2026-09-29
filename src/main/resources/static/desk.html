@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Service Desk</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div><h1>Service Desk</h1><p class="who">Signed in as <span id="who"></span></p></div>
+      <button class="secondary" onclick="logout()">Logout</button>
+    </div>
+  </header>
+  <main>
+    <section class="card"><h2>Open work</h2><div id="summary" class="metrics"></div></section>
+    <section class="card"><h2>Tickets</h2><div id="tickets"></div><div id="history"></div></section>
+    <div class="grid">
+      <section class="card">
+        <h2>Create ticket</h2>
+        <input id="cust" value="CUST100245" placeholder="Customer ID">
+        <input id="svc" value="SVC1001" placeholder="Service ID">
+        <select id="category">
+          <option>NETWORK_OUTAGE</option><option>CALL_DROP</option><option>SLOW_DATA</option><option>NO_CONNECTIVITY</option>
+          <option>SIM_ISSUE</option><option>BILLING</option><option>BROADBAND</option><option>ROAMING</option><option>ENTERPRISE_LINK</option><option>OTHER</option>
+        </select>
+        <select id="priority"><option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option></select>
+        <textarea id="desc" placeholder="Describe the issue"></textarea>
+        <button onclick="createDeskTicket()">Create ticket</button>
+        <p id="createMsg"></p>
+      </section>
+      <section class="card">
+        <h2>Assign engineer</h2>
+        <div class="row">
+          <input id="skill" placeholder="Specialization">
+          <input id="region" placeholder="Region">
+        </div>
+        <button class="secondary" onclick="recommend()">Recommend</button>
+        <div id="engineers"></div>
+        <input id="assignTicket" placeholder="Ticket ID">
+        <input id="engineerId" placeholder="Engineer ID">
+        <button onclick="assignEngineer()">Assign</button>
+        <p id="assignMsg"></p>
+      </section>
+    </div>
+    <div class="grid">
+      <section class="card">
+        <h2>Update ticket</h2>
+        <input id="updateId" placeholder="Ticket ID">
+        <select id="status">
+          <option>OPEN</option><option>ASSIGNED</option><option>IN_PROGRESS</option><option>PENDING_CUSTOMER</option>
+          <option>ESCALATED</option><option>RESOLVED</option><option>CLOSED</option><option>CANCELLED</option>
+        </select>
+        <select id="newPriority"><option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option></select>
+        <input id="remarks" placeholder="Remarks">
+        <button onclick="updateStatus()">Update status</button>
+        <button class="secondary" onclick="updatePriority()">Update priority</button>
+        <p id="updateMsg"></p>
+      </section>
+      <section class="card">
+        <h2>Escalate and reports</h2>
+        <input id="escId" placeholder="Ticket ID">
+        <div class="row">
+          <select id="fromLevel"><option>Engineer</option><option>Team Lead</option><option>Network Manager</option></select>
+          <select id="toLevel"><option>Team Lead</option><option>Network Manager</option><option>Operations Manager</option></select>
+        </div>
+        <input id="reason" placeholder="Reason">
+        <button onclick="escalateTicket()">Escalate</button>
+        <select id="report">
+          <option value="ticket-volume">Ticket volume</option>
+          <option value="sla-compliance">SLA compliance</option>
+          <option value="engineer-performance">Engineer performance</option>
+          <option value="incident-category">Incident category</option>
+          <option value="regional-incident">Regional incident</option>
+          <option value="average-resolution">Average resolution</option>
+          <option value="critical-incident">Critical incident</option>
+        </select>
+        <button class="secondary" onclick="downloadReport(report.value)">Download report</button>
+        <p id="actionMsg"></p>
+      </section>
+    </div>
+  </main>
+  <script src="/common.js"></script>
+  <script src="/pages.js"></script>
+</body>
+</html>
